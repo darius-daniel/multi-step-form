@@ -67,7 +67,7 @@ body {
   padding: 1rem;
   background-image: url("/src/assets/images/bg-sidebar-mobile.svg");
   background-repeat: no-repeat;
-  background-size: auto;
+  background-size: 100vw auto;
 }
 
 .sidebar__nav {
