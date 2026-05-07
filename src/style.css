@@ -226,9 +226,10 @@ body {
 
   .sidebar {
     width: 100%;
-    background-image: url("/src/assets/images/bg-sidebar-desktop.svg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-image: url("/src/assets/images/bg-sidebar-desktop.svg");
+    border-radius: 0.5rem;
   }
 
   .sidebar__nav {
