@@ -157,20 +157,20 @@ body {
 }
 
 .fieldset__input:hover {
-  outline: 1px solid var(--blue-300);
-  border: none;
+  outline: 2px solid var(--blue-300);
+  border: 1px solid transparent;
 }
 
 .fieldset__input:focus {
   outline: 2px solid var(--blue-950);
-  border: none;
+  border: 1px solid transparent;
   background-color: var(--blue-100);
 }
 
 .fieldset__input:invalid {
   content: "This field is required";
   outline: 2px solid var(--red-500);
-  border: none;
+  border: 1px solid transparent;
 }
 
 #btn__next {
@@ -197,7 +197,6 @@ body {
   }
 
   #app {
-    width: 66%;
     grid-template-columns: 1fr 2fr;
     justify-content: center;
     justify-self: center;
