@@ -133,19 +133,19 @@ body {
   gap: 1.5rem;
 }
 
-.fieldset {
+.field {
   border: none;
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
 }
 
-.fieldset__label {
+.field__label {
   color: var(--blue-950);
   font-size: 14px;
 }
 
-.fieldset__input {
+.field__input {
   border: 1px solid var(--gray-500);
   border-radius: 0.5rem;
   padding: 0.75rem;
@@ -155,24 +155,23 @@ body {
   font-weight: var(--font-medium);
 }
 
-.fieldset__input::placeholder {
+.field__input::placeholder {
   font-family: Ubuntu;
   font-size: 16px;
 }
 
-.fieldset__input:hover {
+.field__input:hover {
   outline: 2px solid var(--blue-300);
   border: 1px solid transparent;
 }
 
-.fieldset__input:focus {
+.field__input:focus {
   outline: 2px solid var(--blue-950);
   border: 1px solid transparent;
   background-color: var(--blue-100);
 }
 
-.fieldset__input:invalid {
-  content: "This field is required";
+.field__input:invalid:not(:focus):not(:placeholder-shown) {
   outline: 2px solid var(--red-500);
   border: 1px solid transparent;
 }
