@@ -13,6 +13,10 @@ const stepHeaders = [
     title: "Select your plan",
     description: "You have the option of monthly or yearly billing",
   },
+  {
+    title: "Pick add-ons",
+    description: "Add-ons help enhance your gaming experience",
+  },
 ];
 
 const stepHeader = document.getElementsByClassName("step__header")[0];
