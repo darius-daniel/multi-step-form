@@ -1,12 +1,17 @@
 import stepOne from "./step-one";
+import stepTwo from "./step-two";
 import "./style.css";
 
 let currentStep = 0;
-const formSteps = [stepOne];
+const formSteps = [stepOne, stepTwo];
 const stepHeaders = [
   {
     title: "Personal info",
     description: "Please provide your name, email address, and phone number",
+  },
+  {
+    title: "Select your plan",
+    description: "You have the option of monthly or yearly billing",
   },
 ];
 
@@ -22,6 +27,7 @@ const updateStep = () => {
   stepTitle.textContent = stepHeaders[currentStep].title;
   stepDescription.textContent = stepHeaders[currentStep].description;
 
+  if (currentStep >= 1) formSteps[currentStep - 1].remove();
   stepHeader.after(formSteps[currentStep]);
 };
 
