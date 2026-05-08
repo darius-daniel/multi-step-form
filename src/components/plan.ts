@@ -1,6 +1,7 @@
 export default function createBillingPlan(
   name: "Arcade" | "Advanced" | "Pro",
   price: number,
+  billingPeriod: "mo" | "yr",
 ) {
   const plan = document.createElement("button");
   plan.classList.add("plan");
@@ -19,13 +20,15 @@ export default function createBillingPlan(
 
   const planPricing = document.createElement("p");
   planPricing.classList.add("plan__pricing");
-  planPricing.textContent = `$${price}/yr`;
+  planPricing.textContent = `$${billingPeriod === "yr" ? price : price / 10}/${billingPeriod}`;
   div.appendChild(planPricing);
 
-  const planBonus = document.createElement("p");
-  planBonus.classList.add("plan__bonus");
-  planBonus.textContent = "2 months free";
-  div.appendChild(planBonus);
+  if (billingPeriod === "yr") {
+    const planBonus = document.createElement("p");
+    planBonus.classList.add("plan__bonus");
+    planBonus.textContent = "2 months free";
+    div.appendChild(planBonus);
+  }
 
   plan.append(div);
   return plan;

@@ -65,7 +65,7 @@ body {
 #app {
   display: grid;
   grid-template-columns: 1fr;
-  justify-content: contain;
+  justify-content: center;
   gap: 3rem;
 
   padding: 1rem;
@@ -256,9 +256,49 @@ body {
 }
 
 .plan__bonus {
-  font-size: 14px;
+  font-size: 12px;
   font-weight: var(--font-medium);
   color: var(--blue-950);
+}
+
+.switcher__container {
+  font-weight: var(--font-medium);
+  color: var(--gray-500);
+  margin-top: 1.5rem;
+
+  background-color: var(--blue-100);
+  padding: 1rem;
+  border-radius: 0.5rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.switcher__toggle {
+  border: none;
+  border-radius: 9999px;
+  background-color: var(--blue-950);
+  padding: 0.5rem;
+  width: 3rem;
+
+  display: flex;
+}
+
+.switcher__toggle:hover {
+  cursor: pointer;
+}
+
+.switcher__toggle--switched {
+  justify-content: flex-end;
+}
+
+.switcher__indicator {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background-color: var(--white);
 }
 
 @media screen and (min-width: 1024px) {
@@ -330,10 +370,8 @@ body {
   .step__footer {
     position: static;
     width: 100%;
-  }
 
-  #btn__next {
-    margin-top: 5rem;
+    padding-right: 0;
   }
 
   .step__plans {
@@ -344,5 +382,9 @@ body {
     flex-direction: column;
     gap: 2rem;
     padding: 1.5rem auto;
+  }
+
+  .switcher__container {
+    grid-column: 1 / -1;
   }
 }
