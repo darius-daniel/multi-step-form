@@ -178,7 +178,7 @@ body {
 
 .step__footer {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
 
   position: fixed;
   width: 100vw;
@@ -202,6 +202,21 @@ body {
 
 #btn__next:disabled {
   opacity: 0.5;
+}
+
+#btn__prev {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  font-family: inherit;
+  font-weight: var(--font-medium);
+  color: var(--gray-500);
+  font-size: 16px;
+}
+
+#btn__prev:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .step__plans {
@@ -309,6 +324,7 @@ body {
   }
 
   #app {
+    max-width: fit-content;
     grid-template-columns: 1fr 2fr;
     justify-content: center;
     justify-self: center;
