@@ -51,6 +51,8 @@ const updateStep = () => {
 };
 
 const updateFooter = () => {
+  const stepMarker = stepMarkers.item(currentStep);
+  stepMarker.classList.add("highlightMarker");
   btnPrev.style.display = currentStep === 0 ? "none" : "block";
   stepFooter.style.justifyContent =
     currentStep === 0 ? "flex-end" : "space-between";

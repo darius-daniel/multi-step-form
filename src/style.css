@@ -378,7 +378,9 @@ body {
   }
 
   #app {
-    max-width: fit-content;
+    width: 66vw;
+    min-width: 600px;
+    max-width: 1024px;
     grid-template-columns: 1fr 2fr;
     justify-content: center;
     justify-self: center;
