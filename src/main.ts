@@ -1,9 +1,10 @@
 import stepOne from "./step-one";
+import stepThree from "./step-three";
 import stepTwo from "./step-two";
 import "./style.css";
 
 let currentStep = 0;
-const formSteps = [stepOne, stepTwo];
+const formSteps = [stepOne, stepTwo, stepThree];
 const stepHeaders = [
   {
     title: "Personal info",
