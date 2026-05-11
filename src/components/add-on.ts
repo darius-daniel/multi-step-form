@@ -1,17 +1,23 @@
+import formData from "../definitions";
+
 export default function createAddOn(
   name: string,
   description: string,
   price: number,
-  billingPeriod: "mo" | "yr",
 ) {
   const addOn = document.createElement("section");
   addOn.classList.add("addOn");
 
   addOn.addEventListener("click", () => {
     addOnSelect.checked = !addOnSelect.checked;
-    addOnSelect.checked
-      ? addOn.classList.add("addOn--checked")
-      : addOn.classList.remove("addOn--checked");
+
+    if (addOnSelect.checked) {
+      addOn.classList.add("addOn--checked");
+      formData.addOns.push({ name, price });
+    } else {
+      addOn.classList.remove("addOn--checked");
+      formData.addOns = formData.addOns.filter((item) => item.name !== name);
+    }
   });
 
   const addOnSelect = document.createElement("input");
@@ -37,7 +43,7 @@ export default function createAddOn(
 
   const addOnPricing = document.createElement("span");
   addOnPricing.classList.add("addOn__pricing");
-  addOnPricing.textContent = `+$${price}/${billingPeriod}`;
+  addOnPricing.textContent = `+$${formData.billingPeriod === "mo" ? price : price * 10}/${formData.billingPeriod}`;
   addOnDetails.appendChild(addOnPricing);
 
   addOn.appendChild(addOnDetails);

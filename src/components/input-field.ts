@@ -1,3 +1,5 @@
+import formData from "../definitions";
+
 export default function createInputField(
   labelText: string,
   inputType: "text" | "email" | "tel",
@@ -5,7 +7,6 @@ export default function createInputField(
   inputName: string,
   placeholder: string,
   required: boolean = false,
-  inputValue?: string,
 ) {
   const field = document.createElement("div");
   field.classList.add("field");
@@ -22,10 +23,13 @@ export default function createInputField(
   input.placeholder = placeholder;
   input.name = inputName;
   input.required = required;
-  if (inputValue !== undefined) input.value = inputValue;
 
   field.appendChild(label);
   field.appendChild(input);
+
+  input.addEventListener("change", () => {
+    formData[inputName] = input.value;
+  });
 
   return field;
 }

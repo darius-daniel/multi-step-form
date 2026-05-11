@@ -1,17 +1,17 @@
 import createBillingPlan from "./components/plan";
+import formData from "./definitions";
 
-let billingPeriod: "mo" | "yr" = "mo";
 const stepTwo = document.createElement("section");
 stepTwo.classList.add("step__plans");
 
 const plans = [
-  { title: "Arcade" as const, price: 90 },
-  { title: "Advanced" as const, price: 120 },
-  { title: "Pro" as const, price: 150 },
+  { title: "Arcade" as const, price: 9 },
+  { title: "Advanced" as const, price: 12 },
+  { title: "Pro" as const, price: 15 },
 ] as const;
 
 const updateColors = () => {
-  if (billingPeriod === "mo") {
+  if (formData.billingPeriod === "mo") {
     monthly.style.color = "var(--blue-950)";
     yearly.style.color = "var(--gray-500)";
   } else {
@@ -24,11 +24,7 @@ const renderPlans = () => {
   const existingPlans = Array.from(document.getElementsByClassName("plan"));
 
   plans.forEach((plan, index) => {
-    const billingPlan = createBillingPlan(
-      plan.title,
-      plan.price,
-      billingPeriod,
-    );
+    const billingPlan = createBillingPlan(plan.title, plan.price);
 
     existingPlans.length > 0
       ? existingPlans[index].replaceWith(billingPlan)
@@ -42,7 +38,7 @@ const toggle = document.createElement("button");
 toggle.classList.add("switcher__toggle");
 toggle.addEventListener("click", () => {
   toggle.classList.toggle("switcher__toggle--switched");
-  billingPeriod = billingPeriod === "mo" ? "yr" : "mo";
+  formData.billingPeriod = formData.billingPeriod === "mo" ? "yr" : "mo";
   renderPlans();
   updateColors();
 });

@@ -1,10 +1,12 @@
+import formData from "./definitions";
+import stepFour from "./step-four";
 import stepOne from "./step-one";
 import stepThree from "./step-three";
 import stepTwo from "./step-two";
 import "./style.css";
 
 let currentStep = 0;
-const formSteps = [stepOne, stepTwo, stepThree];
+const formSteps = [stepOne, stepTwo, stepThree, stepFour];
 const stepHeaders = [
   {
     title: "Personal info",
@@ -17,6 +19,10 @@ const stepHeaders = [
   {
     title: "Pick add-ons",
     description: "Add-ons help enhance your gaming experience",
+  },
+  {
+    title: "Finishing up",
+    description: "Double-check everything looks OK before confirming.",
   },
 ];
 

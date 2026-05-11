@@ -1,7 +1,8 @@
+import formData from "../definitions";
+
 export default function createBillingPlan(
   name: "Arcade" | "Advanced" | "Pro",
   price: number,
-  billingPeriod: "mo" | "yr",
 ) {
   const plan = document.createElement("button");
   plan.classList.add("plan");
@@ -20,10 +21,10 @@ export default function createBillingPlan(
 
   const planPricing = document.createElement("p");
   planPricing.classList.add("plan__pricing");
-  planPricing.textContent = `$${billingPeriod === "yr" ? price : price / 10}/${billingPeriod}`;
+  planPricing.textContent = `$${formData.billingPeriod === "mo" ? price : price * 10}/${formData.billingPeriod}`;
   div.appendChild(planPricing);
 
-  if (billingPeriod === "yr") {
+  if (formData.billingPeriod === "yr") {
     const planBonus = document.createElement("p");
     planBonus.classList.add("plan__bonus");
     planBonus.textContent = "2 months free";
