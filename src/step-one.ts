@@ -1,4 +1,5 @@
 import createInputField from "./components/input-field";
+import formData from "./definitions";
 
 const stepOne: HTMLFormElement = document.createElement("form");
 stepOne.action = "#";
@@ -47,6 +48,15 @@ formFields.forEach((formField) => {
 stepOne.addEventListener("change", () => {
   const nextButton = document.getElementById("btn__next") as HTMLButtonElement;
   nextButton.disabled = !stepOne.checkValidity();
+
+  if (stepOne.checkValidity()) flushStepOne();
 });
+
+export function flushStepOne() {
+  const data = new FormData(stepOne);
+  formData.name = data.get("name") as string;
+  formData.email = data.get("email") as string;
+  formData.phone = data.get("phone") as string;
+}
 
 export default stepOne;

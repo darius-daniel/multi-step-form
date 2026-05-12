@@ -25,6 +25,8 @@ const renderPlans = () => {
 
   plans.forEach((plan, index) => {
     const billingPlan = createBillingPlan(plan.title, plan.price);
+    if (formData.plan.name === plan.title)
+      billingPlan.classList.add("plan--selected");
 
     existingPlans.length > 0
       ? existingPlans[index].replaceWith(billingPlan)
@@ -39,6 +41,31 @@ toggle.classList.add("switcher__toggle");
 toggle.addEventListener("click", () => {
   toggle.classList.toggle("switcher__toggle--switched");
   formData.billingPeriod = formData.billingPeriod === "mo" ? "yr" : "mo";
+
+  // Recalculate plan price if one is selected
+  if (formData.plan.name) {
+    const basePrices = { Arcade: 9, Advanced: 12, Pro: 15 };
+    const planName = formData.plan.name as "Arcade" | "Advanced" | "Pro";
+    formData.plan.price =
+      formData.billingPeriod === "mo"
+        ? basePrices[planName]
+        : basePrices[planName] * 10;
+  }
+
+  // Recalculate add-on prices
+  formData.addOns = formData.addOns.map((addOn) => {
+    const basePrices = {
+      "Online service": 1,
+      "Larger storage": 2,
+      "Customizable profile": 2,
+    };
+    const basePrice = basePrices[addOn.name as keyof typeof basePrices];
+    return {
+      ...addOn,
+      price: formData.billingPeriod === "mo" ? basePrice : basePrice * 10,
+    };
+  });
+
   renderPlans();
   updateColors();
 });

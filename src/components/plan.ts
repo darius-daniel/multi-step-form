@@ -32,5 +32,20 @@ export default function createBillingPlan(
   }
 
   plan.append(div);
+
+  plan.addEventListener("click", () => {
+    // Remove selected class from all plans
+    const allPlans = document.querySelectorAll(".plan");
+    allPlans.forEach((p) => p.classList.remove("plan--selected"));
+
+    // Add selected class to clicked plan
+    plan.classList.add("plan--selected");
+
+    // Save to formData
+    formData.plan = {
+      name,
+      price: formData.billingPeriod === "mo" ? price : price * 10,
+    };
+  });
   return plan;
 }

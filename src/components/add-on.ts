@@ -10,12 +10,14 @@ export default function createAddOn(
 
   addOn.addEventListener("click", () => {
     addOnSelect.checked = !addOnSelect.checked;
+    addOn.classList.toggle("addOn--checked");
 
     if (addOnSelect.checked) {
-      addOn.classList.add("addOn--checked");
-      formData.addOns.push({ name, price });
+      formData.addOns.push({
+        name,
+        price: formData.billingPeriod === "mo" ? price : price * 10,
+      });
     } else {
-      addOn.classList.remove("addOn--checked");
       formData.addOns = formData.addOns.filter((item) => item.name !== name);
     }
   });

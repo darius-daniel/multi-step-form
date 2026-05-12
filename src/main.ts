@@ -1,12 +1,12 @@
-import formData from "./definitions";
 import stepFour from "./step-four";
-import stepOne from "./step-one";
+import stepOne, { flushStepOne } from "./step-one";
 import stepThree from "./step-three";
 import stepTwo from "./step-two";
 import "./style.css";
 
 let currentStep = 0;
 const formSteps = [stepOne, stepTwo, stepThree, stepFour];
+const stepFlushers = [flushStepOne];
 const stepHeaders = [
   {
     title: "Personal info",
@@ -72,6 +72,7 @@ btnNext?.addEventListener("click", (event: Event) => {
   event.preventDefault();
 
   if (currentStep >= formSteps.length - 1) return;
+  stepFlushers[currentStep]?.();
 
   stepMarkers.item(currentStep).classList.remove("highlightMarker");
   currentStep++;

@@ -238,7 +238,7 @@ body {
 }
 
 .plan:hover,
-.plan:focus {
+.plan--selected {
   border-color: transparent;
   outline: 1px solid var(--blue-300);
   cursor: pointer;
