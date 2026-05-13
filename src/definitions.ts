@@ -1,20 +1,25 @@
-export interface IBillingPlan {
+export interface BillingPlan {
   name: string;
   price: number;
 }
 
 export type BillingPeriod = "mo" | "yr";
 
-export interface IAddOn {
+export interface AddOn {
   name: string;
   price: number;
 }
 
-export interface IFormData {
+export interface StoreData {
   name: string;
   email: string;
   phone: string;
-  plan: IBillingPlan;
+  plan: BillingPlan;
   billingPeriod: BillingPeriod;
-  addOns: Array<IAddOn>;
+  addOns: Array<AddOn>;
+}
+
+export interface FormStep {
+  element: HTMLElement;
+  isValid: () => boolean;
 }

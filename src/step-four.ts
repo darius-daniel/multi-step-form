@@ -1,5 +1,7 @@
 import createTableRow from "./components/table-row";
+
 import store from "./store";
+import { goToStep } from "./utils";
 
 export default function createStepFour(): HTMLTableElement {
   const stepFour = document.createElement("table");
@@ -20,6 +22,9 @@ export default function createStepFour(): HTMLTableElement {
   const planChangeBtn = document.createElement("button");
   planChangeBtn.id = "btn__planChange";
   planChangeBtn.textContent = "Change";
+  planChangeBtn.addEventListener("click", () => {
+    goToStep(1);
+  });
 
   cellGroup.append(planName, planChangeBtn);
   headCellOne.appendChild(cellGroup);

@@ -1,11 +1,11 @@
-import type { BillingPeriod, IAddOn } from "./definitions";
+import type { BillingPeriod, AddOn } from "./definitions";
 
 const rawState = {
   currentStep: 0,
   name: "",
   email: "",
   phone: "",
-  addOns: [] as Array<IAddOn>,
+  addOns: [] as Array<AddOn>,
   billingPeriod: "mo" as BillingPeriod,
   planName: "",
   planPrice: 0,
