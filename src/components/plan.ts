@@ -1,4 +1,4 @@
-import formData from "../definitions";
+import store from "../store";
 
 export default function createBillingPlan(
   name: "Arcade" | "Advanced" | "Pro",
@@ -21,10 +21,10 @@ export default function createBillingPlan(
 
   const planPricing = document.createElement("p");
   planPricing.classList.add("plan__pricing");
-  planPricing.textContent = `$${formData.billingPeriod === "mo" ? price : price * 10}/${formData.billingPeriod}`;
+  planPricing.textContent = `$${store.billingPeriod === "mo" ? price : price * 10}/${store.billingPeriod}`;
   div.appendChild(planPricing);
 
-  if (formData.billingPeriod === "yr") {
+  if (store.billingPeriod === "yr") {
     const planBonus = document.createElement("p");
     planBonus.classList.add("plan__bonus");
     planBonus.textContent = "2 months free";
@@ -41,11 +41,8 @@ export default function createBillingPlan(
     // Add selected class to clicked plan
     plan.classList.add("plan--selected");
 
-    // Save to formData
-    formData.plan = {
-      name,
-      price: formData.billingPeriod === "mo" ? price : price * 10,
-    };
+    store.planName = name;
+    store.planPrice = store.billingPeriod === "mo" ? price : price * 10;
   });
   return plan;
 }

@@ -1,4 +1,4 @@
-import formData from "../definitions";
+import store from "../store";
 
 export default function createInputField(
   labelText: string,
@@ -28,7 +28,7 @@ export default function createInputField(
   field.appendChild(input);
 
   input.addEventListener("change", () => {
-    formData[inputName] = input.value;
+    store[inputName] = input.value;
   });
 
   return field;

@@ -1,4 +1,4 @@
-import formData from "../definitions";
+import store from "../store";
 
 export default function createAddOn(
   name: string,
@@ -8,23 +8,31 @@ export default function createAddOn(
   const addOn = document.createElement("section");
   addOn.classList.add("addOn");
 
+  const addOnSelect = document.createElement("input");
+  addOnSelect.setAttribute("type", "checkbox");
+  addOnSelect.classList.add("addOn__select");
+
+  // Reflect persisted checked state from store
+  const isChecked = store.addOns.some((a) => a.name === name);
+  if (isChecked) {
+    addOnSelect.checked = true;
+    addOn.classList.add("addOn--checked");
+  }
+
   addOn.addEventListener("click", () => {
     addOnSelect.checked = !addOnSelect.checked;
     addOn.classList.toggle("addOn--checked");
 
     if (addOnSelect.checked) {
-      formData.addOns.push({
+      store.addOns.push({
         name,
-        price: formData.billingPeriod === "mo" ? price : price * 10,
+        price: store.billingPeriod === "mo" ? price : price * 10,
       });
     } else {
-      formData.addOns = formData.addOns.filter((item) => item.name !== name);
+      store.addOns = store.addOns.filter((item) => item.name !== name);
     }
   });
 
-  const addOnSelect = document.createElement("input");
-  addOnSelect.setAttribute("type", "checkbox");
-  addOnSelect.classList.add("addOn__select");
   addOn.appendChild(addOnSelect);
 
   const addOnDetails = document.createElement("div");
@@ -45,7 +53,7 @@ export default function createAddOn(
 
   const addOnPricing = document.createElement("span");
   addOnPricing.classList.add("addOn__pricing");
-  addOnPricing.textContent = `+$${formData.billingPeriod === "mo" ? price : price * 10}/${formData.billingPeriod}`;
+  addOnPricing.textContent = `+$${store.billingPeriod === "mo" ? price : price * 10}/${store.billingPeriod}`;
   addOnDetails.appendChild(addOnPricing);
 
   addOn.appendChild(addOnDetails);

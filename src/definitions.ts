@@ -18,17 +18,3 @@ export interface IFormData {
   billingPeriod: BillingPeriod;
   addOns: Array<IAddOn>;
 }
-
-const formData: IFormData = {
-  name: "",
-  email: "",
-  phone: "",
-  addOns: [],
-  billingPeriod: "mo",
-  plan: {
-    name: "",
-    price: 0,
-  },
-};
-
-export default formData;

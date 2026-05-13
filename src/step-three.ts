@@ -21,14 +21,15 @@ const addOns = [
   },
 ] as const;
 
-const stepThree = document.createElement("section");
-stepThree.classList.add("step__addOns");
+export default function createStepThree(): HTMLElement {
+  const stepThree = document.createElement("section");
+  stepThree.classList.add("step__addOns");
 
-addOns.forEach((addOn) => {
-  const addOnElement = createAddOn(addOn.title, addOn.description, addOn.price);
-  addOnElement.classList.add("addOn__container");
+  addOns.forEach((addOn) => {
+    const addOnElement = createAddOn(addOn.title, addOn.description, addOn.price);
+    addOnElement.classList.add("addOn__container");
+    stepThree.appendChild(addOnElement);
+  });
 
-  stepThree.appendChild(addOnElement);
-});
-
-export default stepThree;
+  return stepThree;
+}

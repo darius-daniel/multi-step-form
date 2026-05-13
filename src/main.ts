@@ -1,12 +1,19 @@
-import stepFour from "./step-four";
+import createStepFour from "./step-four";
 import stepOne, { flushStepOne } from "./step-one";
-import stepThree from "./step-three";
-import stepTwo from "./step-two";
+import createStepThree from "./step-three";
+import createStepTwo from "./step-two";
 import "./style.css";
+import store from "./store";
 
-let currentStep = 0;
-const formSteps = [stepOne, stepTwo, stepThree, stepFour];
-const stepFlushers = [flushStepOne];
+const stepFactories: Array<() => HTMLElement> = [
+  () => stepOne,
+  () => createStepTwo(),
+  () => createStepThree(),
+  () => createStepFour(),
+];
+
+const stepFlushers: Array<(() => void) | undefined> = [flushStepOne];
+
 const stepHeaders = [
   {
     title: "Personal info",
@@ -33,35 +40,42 @@ const stepMarkers = document.getElementsByClassName("navItem__marker");
 const stepFooter = document.getElementsByClassName(
   "step__footer",
 )[0] as HTMLElement;
+
+// Track the currently rendered element so we can remove it
+let currentElement: HTMLElement | null = null;
+
+const renderCurrentStep = () => {
+  if (currentElement) currentElement.remove();
+  currentElement = stepFactories[store.currentStep]();
+  stepHeader.after(currentElement);
+};
+
 const btnPrev = document.getElementById("btn__prev");
 btnPrev.addEventListener("click", () => {
-  if (currentStep <= 0) return;
+  if (store.currentStep <= 0) return;
 
-  stepMarkers.item(currentStep).classList.remove("highlightMarker");
-  formSteps[currentStep].remove();
-  currentStep--;
-  stepHeader.after(formSteps[currentStep]);
-
+  stepMarkers.item(store.currentStep).classList.remove("highlightMarker");
+  store.currentStep--;
+  updateStep();
   updateFooter();
 });
 
 const updateStep = () => {
-  const stepMarker = stepMarkers.item(currentStep);
+  const stepMarker = stepMarkers.item(store.currentStep);
   stepMarker.classList.add("highlightMarker");
 
-  stepTitle.textContent = stepHeaders[currentStep].title;
-  stepDescription.textContent = stepHeaders[currentStep].description;
+  stepTitle.textContent = stepHeaders[store.currentStep].title;
+  stepDescription.textContent = stepHeaders[store.currentStep].description;
 
-  if (currentStep >= 1) formSteps[currentStep - 1].remove();
-  stepHeader.after(formSteps[currentStep]);
+  renderCurrentStep();
 };
 
 const updateFooter = () => {
-  const stepMarker = stepMarkers.item(currentStep);
+  const stepMarker = stepMarkers.item(store.currentStep);
   stepMarker.classList.add("highlightMarker");
-  btnPrev.style.display = currentStep === 0 ? "none" : "block";
+  btnPrev.style.display = store.currentStep === 0 ? "none" : "block";
   stepFooter.style.justifyContent =
-    currentStep === 0 ? "flex-end" : "space-between";
+    store.currentStep === 0 ? "flex-end" : "space-between";
 };
 
 updateStep();
@@ -71,11 +85,11 @@ const btnNext = document.getElementById("btn__next");
 btnNext?.addEventListener("click", (event: Event) => {
   event.preventDefault();
 
-  if (currentStep >= formSteps.length - 1) return;
-  stepFlushers[currentStep]?.();
+  if (store.currentStep >= stepFactories.length - 1) return;
+  stepFlushers[store.currentStep]?.();
 
-  stepMarkers.item(currentStep).classList.remove("highlightMarker");
-  currentStep++;
+  stepMarkers.item(store.currentStep).classList.remove("highlightMarker");
+  store.currentStep++;
   updateStep();
   updateFooter();
 });
