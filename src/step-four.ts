@@ -37,33 +37,33 @@ export default function createStepFour(): HTMLTableElement {
     const newRow = createTableRow();
 
     const addOnName = document.createElement("td");
-    addOnName.classList.add("addOn__name");
+    addOnName.classList.add();
     addOnName.textContent = addOn.name;
 
     const addOnPrice = document.createElement("td");
-    addOnPrice.classList.add("addOn__price");
+    addOnPrice.classList.add();
     addOnPrice.textContent = `+$${addOn.price}/${store.billingPeriod}`;
 
     newRow.append(addOnName, addOnPrice);
     tableBody.appendChild(newRow);
   });
 
-  const tableFoot = document.createElement("tfoot");
-  tableFoot.classList.add("table__foot");
-
   // Total row
-  const totalRow = createTableRow();
-  const totalLabel = document.createElement("td");
+  const totalSection = document.createElement("section");
+  totalSection.classList.add("total");
+  const totalLabel = document.createElement("span");
+  totalLabel.classList.add("total__label");
+
   totalLabel.textContent = `Total (per ${store.billingPeriod === "mo" ? "month" : "year"})`;
 
   const totalValue = document.createElement("td");
+  totalValue.classList.add("total__value");
   const addOnTotal = store.addOns.reduce((sum, a) => sum + a.price, 0);
   totalValue.textContent = `+$${store.planPrice + addOnTotal}/${store.billingPeriod}`;
 
-  totalRow.append(totalLabel, totalValue);
-  tableFoot.appendChild(totalRow);
+  totalSection.append(totalLabel, totalValue);
 
-  stepFour.append(tableHead, tableBody, tableFoot);
+  stepFour.append(tableHead, tableBody, totalSection);
 
   return stepFour;
 }

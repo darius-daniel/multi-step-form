@@ -53,9 +53,9 @@ body {
   background-size: contain;
   background-repeat: no-repeat;
 
-  height: 100dvh;
-  min-height: 100dvh;
-  max-height: 100dvh;
+  height: 100vh;
+  min-height: 100vh;
+  max-height: 100vh;
 
   width: 100vw;
   min-width: 100vw;
@@ -111,6 +111,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+
+  position: relative;
 }
 
 .step__header {
@@ -219,6 +221,10 @@ body {
 #btn__planChange:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+#btn__planChange:hover {
+  color: var(--blue-300);
 }
 
 .step__plans {
@@ -374,8 +380,9 @@ body {
 
 .summary {
   padding: 1rem;
-  border-radius: 0.5rem;
+  border-radius: 1rem;
   background-color: var(--blue-100);
+  font-size: 14px;
 }
 
 .cellgroup {
@@ -391,9 +398,42 @@ body {
 }
 
 .table__body {
-  font-size: 14px;
+  display: block;
+  font-weight: var(--font-medium);
   color: var(--gray-500);
-  padding: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid (--gray-500);
+}
+
+.table__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--white);
+  position: absolute;
+  width: 100%;
+  left: 0;
+  padding: 2rem;
+}
+
+td:last-child {
+  color: var(--blue-950);
+}
+
+.total__label {
+  color: var(--gray-500);
+  font-weight: var(--font-medium);
+}
+
+.total__value {
+  color: var(--blue-300);
+  font-size: 18px;
+  font-weight: var(--font-medium);
 }
 
 @media screen and (min-width: 1024px) {
@@ -484,5 +524,13 @@ body {
 
   .switcher__container {
     grid-column: 1 / -1;
+  }
+
+  .summary {
+    margin-bottom: 3rem;
+  }
+
+  .total {
+    padding: 1rem 4rem 1rem 2rem;
   }
 }
