@@ -436,6 +436,33 @@ td:last-child {
   font-weight: var(--font-medium);
 }
 
+.confirmation {
+  display: grid;
+  place-content: center;
+  gap: 1rem;
+  background-color: var(--white);
+  border-radius: 1rem;
+  text-align: center;
+
+  padding: 6rem 1rem;
+}
+
+.confirmation__icon {
+  width: 4rem;
+  height: 4rem;
+  margin: auto;
+}
+
+.confirmation__title {
+  color: var(--blue-950);
+  margin-top: 1rem;
+}
+
+.confirmation__message {
+  color: var(--gray-500);
+  line-height: 1.5rem;
+}
+
 @media screen and (min-width: 1024px) {
   body {
     display: grid;
@@ -532,5 +559,14 @@ td:last-child {
 
   .total {
     padding: 1rem 4rem 1rem 2rem;
+  }
+
+  .confirmation {
+    padding: 10rem 4rem;
+  }
+
+  .confirmation__icon {
+    width: 6rem;
+    height: 6rem;
   }
 }

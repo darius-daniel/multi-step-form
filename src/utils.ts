@@ -37,7 +37,8 @@ export function flushStepOne(stepOne: HTMLFormElement) {
 }
 
 export function goToStep(targetIndex: number) {
-  stepMarkers.item(store.currentStep)?.classList.remove("highlightMarker");
+  if (targetIndex <= 3)
+    stepMarkers.item(store.currentStep)?.classList.remove("highlightMarker");
   store.currentStep = targetIndex;
   updateStep();
   updateFooter();

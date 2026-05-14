@@ -5,6 +5,7 @@ import createStepFour from "./step-four";
 import stepOne from "./step-one";
 import createStepThree from "./step-three";
 import createStepTwo from "./step-two";
+import { createStepFive } from "./step-five";
 
 export const stepFactories: Array<() => HTMLElement> = [
   () => stepOne,
@@ -28,8 +29,9 @@ btnNext.setAttribute("form", "formStep1");
 btnNext.addEventListener("click", (event: Event) => {
   event.preventDefault();
 
-  if (store.currentStep >= stepFactories.length - 1) {
-    return;
+  if (store.currentStep + 1 >= stepFactories.length) {
+    createStepFive();
+  } else {
+    goToStep(store.currentStep + 1);
   }
-  goToStep(store.currentStep + 1);
 });
