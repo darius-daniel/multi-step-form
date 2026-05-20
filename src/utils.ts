@@ -46,10 +46,12 @@ export function goToStep(targetIndex: number) {
 
 export function updateFooter() {
   const stepMarker = stepMarkers.item(store.currentStep);
-  stepMarker.classList.add("highlightMarker");
+  stepMarker?.classList.add("highlightMarker");
 
   const btnPrev = document.getElementById("btn__prev");
-  btnPrev.style.display = store.currentStep === 0 ? "none" : "block";
+  if (btnPrev) {
+    btnPrev.style.display = store.currentStep === 0 ? "none" : "block";
+  }
 
   const stepFooter = document.getElementsByClassName(
     "step__footer",
@@ -60,7 +62,7 @@ export function updateFooter() {
 
 export function updateStep() {
   const stepMarker = stepMarkers.item(store.currentStep);
-  stepMarker.classList.add("highlightMarker");
+  stepMarker?.classList.add("highlightMarker");
 
   const stepTitle = document.getElementsByClassName("step__title")[0];
   stepTitle.textContent = stepHeaders[store.currentStep].title;

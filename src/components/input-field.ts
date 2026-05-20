@@ -28,7 +28,9 @@ export default function createInputField(
   field.appendChild(input);
 
   input.addEventListener("change", () => {
-    store[inputName] = input.value;
+    if (inputName in store) {
+      (store as any)[inputName] = input.value;
+    }
   });
 
   return field;

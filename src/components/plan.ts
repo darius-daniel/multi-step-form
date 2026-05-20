@@ -1,4 +1,13 @@
 import store from "../store";
+import iconArcade from "../assets/images/icon-arcade.svg";
+import iconAdvanced from "../assets/images/icon-advanced.svg";
+import iconPro from "../assets/images/icon-pro.svg";
+
+const iconMap = {
+  Arcade: iconArcade,
+  Advanced: iconAdvanced,
+  Pro: iconPro,
+};
 
 export default function createBillingPlan(
   name: "Arcade" | "Advanced" | "Pro",
@@ -9,7 +18,7 @@ export default function createBillingPlan(
 
   const icon = document.createElement("img");
   icon.classList.add("plan__icon");
-  icon.src = `/src/assets/images/icon-${name.toLowerCase()}.svg`;
+  icon.src = iconMap[name];
   plan.appendChild(icon);
 
   const div = document.createElement("div");

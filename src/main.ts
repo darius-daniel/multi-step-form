@@ -15,7 +15,7 @@ export const stepFactories: Array<() => HTMLElement> = [
 ];
 
 const btnPrev = document.getElementById("btn__prev");
-btnPrev.addEventListener("click", () => {
+btnPrev?.addEventListener("click", () => {
   if (store.currentStep <= 0) return;
   goToStep(store.currentStep - 1);
 });

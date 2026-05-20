@@ -1,3 +1,5 @@
+import iconThankYou from "./assets/images/icon-thank-you.svg";
+
 export function createStepFive(): HTMLElement {
   const stepFive = document
     .getElementsByClassName("step")
@@ -7,7 +9,7 @@ export function createStepFive(): HTMLElement {
 
   const img = document.createElement("img");
   img.classList.add("confirmation__icon");
-  img.src = "/src/assets/images/icon-thank-you.svg";
+  img.src = iconThankYou;
   stepFive.appendChild(img);
 
   const title = document.createElement("h1");
